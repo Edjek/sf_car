@@ -28,9 +28,11 @@ class Car
     private $description;
 
     #[ORM\ManyToOne(targetEntity: Brand::class, inversedBy: 'cars')]
+    #[ORM\JoinColumn(onDelete: 'CASCADE')]
     private $brand;
 
     #[ORM\ManyToOne(targetEntity: Group::class, inversedBy: 'cars')]
+    #[ORM\JoinColumn(onDelete: 'CASCADE')]
     private $groupe;
 
     #[ORM\OneToMany(mappedBy: 'car', targetEntity: Image::class)]

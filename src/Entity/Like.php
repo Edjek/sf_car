@@ -15,9 +15,11 @@ class Like
     private $id;
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'likes')]
+    #[ORM\JoinColumn(onDelete: 'CASCADE')]
     private $user;
 
     #[ORM\ManyToOne(targetEntity: Car::class, inversedBy: 'likes')]
+    #[ORM\JoinColumn(onDelete: 'CASCADE')]
     private $car;
 
     public function getId(): ?int

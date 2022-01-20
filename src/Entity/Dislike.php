@@ -14,9 +14,11 @@ class Dislike
     private $id;
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'dislikes')]
+    #[ORM\JoinColumn(onDelete: 'CASCADE')]
     private $user;
 
     #[ORM\ManyToOne(targetEntity: Car::class, inversedBy: 'dislikes')]
+    #[ORM\JoinColumn(onDelete: 'CASCADE')]
     private $car;
 
     public function getId(): ?int
