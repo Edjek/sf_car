@@ -20,7 +20,7 @@ class Group
     private $name;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $countrie;
+    private $country;
 
     #[ORM\OneToMany(mappedBy: 'groupe', targetEntity: Car::class)]
     private $cars;
@@ -47,14 +47,14 @@ class Group
         return $this;
     }
 
-    public function getCountrie(): ?string
+    public function getCountry(): ?string
     {
-        return $this->countrie;
+        return $this->country;
     }
 
-    public function setCountrie(string $countrie): self
+    public function setCountry(string $country): self
     {
-        $this->countrie = $countrie;
+        $this->country = $country;
 
         return $this;
     }

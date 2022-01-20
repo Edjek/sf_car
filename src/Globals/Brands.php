@@ -4,7 +4,7 @@ namespace App\Globals;
 
 use App\Repository\BrandRepository;
 
-class Groups
+class Brands
 {
     private $brandRepository;
 

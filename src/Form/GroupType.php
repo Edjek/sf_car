@@ -14,7 +14,7 @@ class GroupType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('countrie')
+            ->add('country')
             ->add('enregistrer', SubmitType::class)
             ;
     }
