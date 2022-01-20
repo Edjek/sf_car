@@ -19,6 +19,7 @@
 		<div class="container border rounded w-50 p-5 mt-5">
 			<h1>{{ image.title }}</h1>
 			<p>{{ image.src }}</p>
+			<p><img src="{{ asset('upload/'~image.src) }}" alt="" width="150"></p>
 			<p>{{ image.alt }}</p>
 			<p>{{ image.car.name }}</p>
 		</div>

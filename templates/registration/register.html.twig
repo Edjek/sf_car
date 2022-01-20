@@ -18,19 +18,15 @@
 				{{ form_row(registrationForm.plainPassword, { label: 'Mot de passe' ,'attr' : { 'class' : 'form-control' }}) }}
 			</div>
 
-			<div class="mb-3">
+			<div class="mb-5">
 				{{ form_row(registrationForm.agreeTerms, { label: 'accepter les conditions'}) }}
 			</div>
 
-			<button type="submit" class="btn btn-outline-dark mt-3">Register</button>
-
-			{{ form_end(registrationForm) }}
-
+			<button type="submit" class="btn btn-outline-dark me-2">Register</button>
 			{% if app.user %}
-				<form action="{{ path('delete_user') }}">
-					<button type="submit" class="btn btn-outline-danger mt-3">Supprimer</button>
-				</form>
+				<a href="{{ path('delete_user') }}" class="btn btn-outline-danger">Supprimer</a>
 			{% endif %}
+			{{ form_end(registrationForm) }}
 		</div>
 
 	</div>

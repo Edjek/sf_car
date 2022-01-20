@@ -79,7 +79,7 @@ class AppFixtures extends Fixture
 
             $car = $this->carRepository->find($id_car);
 
-            $image->setSrc($faker->imageUrl(640, 480, 'animals', true));
+            $image->setSrc($faker->imageUrl(150, 100, true));
             $image->setTitle($faker->word);
             $image->setAlt($faker->word);
             $image->setCar($car);

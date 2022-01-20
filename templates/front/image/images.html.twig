@@ -36,7 +36,7 @@
 								{{ image.title }}
 							</a>
 						</td>
-						<td>img{{ image.src }}</td>
+						<td><img src="{{ asset('upload/'~image.src) }}" alt="" width="150"></td>
 						<td>{{ image.alt }}</td>
 						<td>{{ image.car.name }}</td>
 					</tr>

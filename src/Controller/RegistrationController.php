@@ -88,8 +88,8 @@ class RegistrationController extends AbstractController
         $form->handleRequest($request);
 
         $user = $userRepository->findOneBy(['email' => $this->getUser()->getUserIdentifier()]);
-
         if ($form->isSubmitted() && $form->isValid()) {
+            dump($user);die;
             // encode the plain password
             $user->setPassword(
                 $userPasswordHasher->hashPassword(
