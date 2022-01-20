@@ -2,17 +2,43 @@
 
 namespace App\Controller\Front;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\CarRepository;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class CarController extends AbstractController
 {
-    #[Route('/car', name: 'car')]
-    public function index(): Response
+    #[Route('/cars', name: 'car_list')]
+    public function carList(CarRepository $carRepository): Response
     {
-        return $this->render('front/car/index.html.twig', [
-            'controller_name' => 'CarController',
+        $cars = $carRepository->findAll();
+
+        return $this->render('front/car/cars.html.twig', [
+            'cars' => $cars,
+        ]);
+    }
+
+    #[Route('/car/{id}', name: 'car_show')]
+    public function carShow($id, CarRepository $carRepository): Response
+    {
+        $car = $carRepository->find($id);
+
+        return $this->render('front/car/car.html.twig', [
+            'car' => $car,
+        ]);
+    }
+
+    #[Route('/search', name: 'search')]
+    public function search(CarRepository $carRepository, Request $request)
+    {
+        $search = $request->query->get('search');
+
+        $cars = $carRepository->searchByTerm($search);
+
+        return $this->render('front/car/cars.html.twig', [
+            'cars' => $cars,
         ]);
     }
 }

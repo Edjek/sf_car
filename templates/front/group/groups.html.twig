@@ -1,0 +1,44 @@
+{% extends 'front/base.html.twig' %}
+
+{% block title %}Groups!
+{% endblock %}
+
+{% block body %}
+
+	<div class="container p-3 mt-3">
+		{% for message in app.flashes('notice') %}
+			<div class="alert alert-success alert-dismissible fade show" role="alert">
+				{{ message }}
+				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+			</div>
+		{% endfor %}
+
+		<div class="my-3">
+			<a href="{{ path('main') }}" class="btn btn-outline-primary">
+				Accueil
+			</a>
+		</div>
+
+		<table class="table table-hover text-center">
+			<thead>
+				<tr>
+					<th scope="col">Nom</th>
+					<th scope="col">Pays</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for group in groups %}
+					<tr>
+						<td>
+							<a href="{{ path('group_show', { 'id' : group.id }) }}">
+								{{ group.name }}
+							</a>
+						</td>
+						<td>{{ group.country }}</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+
+{% endblock %}
