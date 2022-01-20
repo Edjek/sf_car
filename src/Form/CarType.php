@@ -17,10 +17,15 @@ class CarType extends AbstractType
             ->add('year')
             ->add('engine')
             ->add('description')
-            ->add('brand')
-            ->add('groupe')
-            ->add('enregistrer', SubmitType::class)
-            ;
+            ->add('brand', EntityType::class, [
+                'class' => Brand::class,
+                'choice_label' => 'name'
+            ])
+            ->add('groupe', EntityType::class, [
+                'class' => Group::class,
+                'choice_label' => 'name'
+            ])
+            ->add('enregistrer', SubmitType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
