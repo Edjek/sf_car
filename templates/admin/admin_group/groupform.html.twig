@@ -1,0 +1,39 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Group
+{% endblock %}
+
+{% block body %}
+
+	<div class="container">
+		<div class="my-3">
+			<a href="{{ path('admin_main') }}" class="btn btn-outline-primary">
+				Accueil
+			</a>
+			<a href="{{ path('admin_group_list') }}" class="btn btn-outline-primary">
+				Retour à la liste
+			</a>
+		</div>
+	</div>
+
+	<div class="container p-3 w-50">
+	<h1>Categorie</h1>
+		{{ form_start(groupForm) }}
+		<div class="mb-3 mt-5">
+			{{ form_label(groupForm.name, 'Nom : ', {'label_attr' : { 'class' : 'form-label' } } ) }}
+			{{ form_widget(groupForm.name, {'attr' : {'class' : 'form-control'} } ) }}
+		</div>
+
+		<div class="mb-3">
+			{{ form_label(groupForm.country, 'Pays : ', {'label_attr' : { 'class' : 'form-label' } } ) }}
+			{{ form_widget(groupForm.country, {'attr' : { 'class' : 'form-control'} } ) }}
+		</div>
+
+		<div class="mt-5">
+		{{ form_widget(groupForm.enregistrer, { 'attr' : {'class' : 'btn btn-outline-primary'} } ) }}
+		</div>
+
+		{{ form_end(groupForm) }}
+	</div>
+
+{% endblock %}

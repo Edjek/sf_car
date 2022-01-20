@@ -1,0 +1,59 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Brand
+{% endblock %}
+
+{% block body %}
+
+	<div class="container">
+		<div class="my-3">
+			<a href="{{ path('admin_main') }}" class="btn btn-outline-primary">
+				Accueil
+			</a>
+			<a href="{{ path('admin_car_list') }}" class="btn btn-outline-primary">
+				Retour à la liste
+			</a>
+		</div>
+	</div>
+
+	<div class="container p-3 w-50">
+	<h1>Categorie</h1>
+		{{ form_start(carForm) }}
+		<div class="mb-3 mt-5">
+			{{ form_label(carForm.name, 'Nom : ', {'label_attr' : { 'class' : 'form-label' } } ) }}
+			{{ form_widget(carForm.name, {'attr' : {'class' : 'form-control'} } ) }}
+		</div>
+
+		<div class="mb-3">
+			{{ form_label(carForm.year, 'Année : ', {'label_attr' : { 'class' : 'form-label' } } ) }}
+			{{ form_widget(carForm.year, {'attr' : { 'class' : 'form-control'} } ) }}
+		</div>
+
+		<div class="mb-3">
+			{{ form_label(carForm.engine, 'Moteur : ', {'label_attr' : { 'class' : 'form-label' } } ) }}
+			{{ form_widget(carForm.engine, {'attr' : { 'class' : 'form-control'} } ) }}
+		</div>
+
+		<div class="mb-3">
+			{{ form_label(carForm.description, 'Description : ', {'label_attr' : { 'class' : 'form-label' } } ) }}
+			{{ form_widget(carForm.description, {'attr' : { 'class' : 'form-control'} } ) }}
+		</div>
+
+		<div class="mb-3">
+			{{ form_label(carForm.brand, 'Marque : ', {'label_attr' : { 'class' : 'form-label' } } ) }}
+			{{ form_widget(carForm.brand, {'attr' : { 'class' : 'form-control'} } ) }}
+		</div>
+
+		<div class="mb-3">
+			{{ form_label(carForm.groupe, 'Groupe : ', {'label_attr' : { 'class' : 'form-label' } } ) }}
+			{{ form_widget(carForm.groupe, {'attr' : { 'class' : 'form-control'} } ) }}
+		</div>
+
+		<div class="mt-5">
+		{{ form_widget(carForm.enregistrer, { 'attr' : {'class' : 'btn btn-outline-primary'} } ) }}
+		</div>
+
+		{{ form_end(carForm) }}
+	</div>
+
+{% endblock %}

@@ -1,0 +1,63 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Cars!
+{% endblock %}
+
+{% block body %}
+
+	<div class="container p-3 mt-5">
+		{% for message in app.flashes('notice') %}
+			<div class="alert alert-success alert-dismissible fade show" role="alert">
+				{{ message }}
+				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+			</div>
+		{% endfor %}
+
+		<div class="my-3">
+			<a href="{{ path('admin_main') }}" class="btn btn-outline-primary">
+				Accueil
+			</a>
+			<a href="{{ path('admin_create_car') }}" class="btn btn-outline-primary">
+				Ajouter<i class="bi bi-plus-circle-dotted ms-2"></i>
+			</a>
+		</div>
+
+		<table class="table table-hover text-center">
+			<thead>
+				<tr>
+					<th scope="col">Nom</th>
+					<th scope="col">Année</th>
+					<th scope="col">Moteur</th>
+					<th scope="col">Description</th>
+					<th scope="col">Marque</th>
+					<th scope="col">Groupe</th>
+					<th scope="col">Modifier</th>
+					<th scope="col">Supprimer</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for car in cars %}
+					<tr>
+						<td>{{ car.name }}</td>
+						<td>{{ car.year }}</td>
+						<td>{{ car.engine }}</td>
+						<td>{{ car.description }}</td>
+						<td>{{ car.brand.name }}</td>
+						<td>{{ car.groupe.name }}</td>
+						<td>
+							<a href="{{ path('admin_update_car', { 'id' : car.id }) }}">
+								<i class="bi bi-pencil-square"></i>
+							</a>
+						</td>
+						<td>
+							<a href="{{ path('admin_delete_car', { 'id' : car.id }) }}">
+								<i class="bi bi-trash text-danger"></i>
+							</a>
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+
+{% endblock %}

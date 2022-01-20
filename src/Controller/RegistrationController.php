@@ -18,6 +18,16 @@ use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
 
 class RegistrationController extends AbstractController
 {
+    #[Route('/admin/users', name: 'admin_user_list')]
+    public function userList(UserRepository $userRepository)
+    {
+        $users = $userRepository->findAll();
+
+        return $this->render('admin/admin_user/users.html.twig', [
+            'users' => $users,
+        ]);
+    }
+
     #[Route('/register', name: 'app_register')]
     public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, UserAuthenticator $authenticator, EntityManagerInterface $entityManager, MailerInterface $mailerInterface): Response
     {
@@ -47,6 +57,10 @@ class RegistrationController extends AbstractController
                 ->html('<h1>Bien joué! Vous êtes inscrit.</h1>');
             $mailerInterface->send($email);
 
+            $this->addFlash(
+                'notice',
+                'Votre compte a été créé'
+            );
             return $userAuthenticator->authenticateUser(
                 $user,
                 $authenticator,
@@ -98,7 +112,7 @@ class RegistrationController extends AbstractController
 
             $this->addFlash(
                 'notice',
-                'Le compte a été mis à jour'
+                'Votre compte a été mis à jour'
             );
 
             return $userAuthenticator->authenticateUser(
@@ -111,5 +125,22 @@ class RegistrationController extends AbstractController
         return $this->render('registration/register.html.twig', [
             'registrationForm' => $form->createView(),
         ]);
+    }
+
+    #[Route('/delete/user/', name: 'delete_user')]
+    public function deleteUser(UserRepository $userRepository, EntityManagerInterface $entityManagerInterface)
+    {
+        $user = $userRepository->findOneBy(['email' => $this->getUser()->getUserIdentifier()]);
+
+        $entityManagerInterface->remove($user);
+
+        $entityManagerInterface->flush();
+
+        $this->addFlash(
+            'notice',
+            'Le compte a été supprimé'
+        );
+
+        return $this->redirectToRoute("main");
     }
 }
