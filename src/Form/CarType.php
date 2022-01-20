@@ -6,6 +6,7 @@ use App\Entity\Car;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class CarType extends AbstractType
 {
@@ -18,7 +19,8 @@ class CarType extends AbstractType
             ->add('description')
             ->add('brand')
             ->add('groupe')
-        ;
+            ->add('enregistrer', SubmitType::class)
+            ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void

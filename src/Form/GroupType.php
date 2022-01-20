@@ -6,6 +6,7 @@ use App\Entity\Group;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class GroupType extends AbstractType
 {
@@ -14,7 +15,8 @@ class GroupType extends AbstractType
         $builder
             ->add('name')
             ->add('countrie')
-        ;
+            ->add('enregistrer', SubmitType::class)
+            ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
