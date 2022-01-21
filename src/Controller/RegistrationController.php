@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
@@ -89,8 +90,14 @@ class RegistrationController extends AbstractController
 
         $user = $userRepository->findOneBy(['email' => $this->getUser()->getUserIdentifier()]);
         if ($form->isSubmitted() && $form->isValid()) {
-            dump($user);die;
+            // dump($user);die;
             // encode the plain password
+
+            $session = new Session();
+            $session->start();
+
+            // set and get session attributes
+            $session->set('email', $this->getUser()->getUserIdentifier());
             $user->setPassword(
                 $userPasswordHasher->hashPassword(
                     $user,
@@ -115,6 +122,7 @@ class RegistrationController extends AbstractController
                 'Votre compte a été mis à jour'
             );
 
+
             return $userAuthenticator->authenticateUser(
                 $user,
                 $authenticator,
@@ -135,6 +143,10 @@ class RegistrationController extends AbstractController
         $entityManagerInterface->remove($user);
 
         $entityManagerInterface->flush();
+
+        $session = new Session();
+        $session->invalidate();
+
 
         $this->addFlash(
             'notice',
