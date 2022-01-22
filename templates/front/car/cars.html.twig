@@ -26,6 +26,7 @@
 					<th scope="col">Année</th>
 					<th scope="col">Moteur</th>
 					<th scope="col">Description</th>
+					<th scope="col">Images</th>
 					<th scope="col">Marque</th>
 					<th scope="col">Groupe</th>
 				</tr>
@@ -41,6 +42,8 @@
 						<td>{{ car.year }}</td>
 						<td>{{ car.engine }}</td>
 						<td>{{ car.description }}</td>
+						<td>{% for image in car.images %}<img src="{{ asset('upload/'~image.src) }}" alt="" width="100px">
+				{% endfor %}</td>
 						<td>{{ car.brand.name }}</td>
 						<td>{{ car.groupe.name }}</td>
 					</tr>

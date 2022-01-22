@@ -17,15 +17,14 @@
 	</div>
 
 	<div class="container p-3 w-50">
-	<h1>Image</h1>
+	<h1 class="ms-auto">Image</h1>
 		{{ form_start(imageForm) }}
 		<div class="mb-3 mt-5">
-			{{ form_label(imageForm.title, 'Title : ', {'label_attr' : { 'class' : 'form-label' } } ) }}
+			{{ form_label(imageForm.title, 'Titre : ', {'label_attr' : { 'class' : 'form-label' } } ) }}
 			{{ form_widget(imageForm.title, {'attr' : {'class' : 'form-control'} } ) }}
 		</div>
 
 		<div class="mb-3">
-			{{ form_label(imageForm.src, 'Src : ', {'label_attr' : { 'class' : 'form-label' } } ) }}
 			{{ form_widget(imageForm.src, {'attr' : { 'class' : 'form-control'} } ) }}
 		</div>
 

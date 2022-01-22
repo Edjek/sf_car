@@ -24,6 +24,10 @@
 			<p>{{ car.brand.name }}</p>
 			<p>{{ car.groupe.name }}</p>
 			<p>
+				{% for image in car.images %}<img src="{{ asset('upload/'~image.src) }}" alt="" width="100px">
+				{% endfor %}
+			</p>
+			<p>
 				<a href="{{ path('car_like', { 'id' : car.id }) }}" class="text-decoration-none js-likes">
 					{% if app.user and car.isLikeByUser(app.user) %}
 						<i class="like bi bi-hand-thumbs-up-fill"></i>
